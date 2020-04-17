@@ -29,6 +29,7 @@ import { SiteLayoutComponent } from './site-layout/site-layout.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { CaseEntryComponent } from './case-entry/case-entry.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { CaseEntryComponent } from './case-entry/case-entry.component';
     MatExpansionModule,
     MatGridListModule,
     MatMenuModule,
-    MatSelectModule
+    MatSelectModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

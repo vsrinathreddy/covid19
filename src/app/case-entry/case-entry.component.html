@@ -17,8 +17,8 @@
       <mat-form-field class="example-full-width">
         <mat-label>Select State</mat-label>
         <mat-select  formControlName="stateControl">
-          <mat-option *ngFor="let state of states" [value]="state.ID">
-            {{state.Name}}
+          <mat-option *ngFor="let state of states" [value]="state.stateID">
+            {{state.stateName}}
           </mat-option>
         </mat-select>
         <mat-error *ngIf="caseFormGroup.controls['stateControl'].errors?.required">
