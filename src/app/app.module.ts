@@ -20,6 +20,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatInputModule} from '@angular/material/input';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatSelectModule} from '@angular/material/select';
 import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { FlexLayoutModule } from "@angular/flex-layout";
@@ -56,7 +57,14 @@ import { CaseEntryComponent } from './case-entry/case-entry.component';
     MatInputModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    FormsModule
+    MatNativeDateModule,
+    MatPaginatorModule,
+    FormsModule,
+    MatDividerModule,
+    MatExpansionModule,
+    MatGridListModule,
+    MatMenuModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

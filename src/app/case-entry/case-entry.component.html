@@ -1,1 +1,40 @@
-<p>case-entry works!</p>
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title color="primary">Daily Case Details</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form class="example-form" [formGroup]="caseFormGroup" (ngSubmit)="onSubmit(caseFormGroup.value)">
+      <mat-form-field class="example-full-width">
+        <mat-label>Date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker touchUi #picker></mat-datepicker>
+        <mat-error *ngIf="caseFormGroup.controls['date'].errors?.required &&
+        caseFormGroup.controls['date'].touched">
+          Date is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Select State</mat-label>
+        <mat-select  formControlName="stateControl">
+          <mat-option *ngFor="let state of states" [value]="state.ID">
+            {{state.Name}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="caseFormGroup.controls['stateControl'].errors?.required">
+          State is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Case Count</mat-label>
+        <input matInput placeholder="enter count" formControlName="count">
+        <mat-error *ngIf="caseFormGroup.controls['count'].errors?.required &&
+        caseFormGroup.controls['count'].touched">
+          Case Count is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+      <mat-label style="color: red;margin-left: 10px;">{{error}}</mat-label>
+    </form>
+  </mat-card-content>
+</mat-card>
