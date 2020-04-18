@@ -30,6 +30,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { CaseEntryComponent } from './case-entry/case-entry.component';
 import { HttpClientModule } from '@angular/common/http';
+import {MatSortModule} from '@angular/material/sort';
+import {MatTableModule} from '@angular/material/table';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -41,6 +44,9 @@ import { HttpClientModule } from '@angular/common/http';
     CaseEntryComponent
   ],
   imports: [
+    MatSortModule,
+    MatTableModule,
+    MatTabsModule,
     BrowserModule,
     routing,
     BrowserAnimationsModule,

@@ -19,7 +19,6 @@ export class CaseEntryComponent implements OnInit {
 
   ngOnInit(): void {
     this.stateService.getStates().subscribe((data: any[])=>{
-      console.log(data);
       this.states = data;
     })
     this.createForm();
