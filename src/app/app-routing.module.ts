@@ -23,4 +23,10 @@ const routes: Routes = [
   // otherwise redirect to home
   { path: '**', redirectTo: '' }];
 
-  export const routing = RouterModule.forRoot(routes);
+  @NgModule({
+    imports: [RouterModule.forRoot(routes,{useHash:true})],
+    exports: [RouterModule]
+  })
+  export class AppRoutingModule { }
+
+  export const routing = RouterModule.forRoot(routes,{useHash:true});
