@@ -22,24 +22,28 @@
         <ng-container matColumnDef="stateName">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Name of State/UT</th>
           <td mat-cell *matCellDef="let case"> {{case.stateName}} </td>
+          <td mat-footer-cell *matFooterCellDef> Total Cases</td>
         </ng-container>
 
         <!-- caseCount Column -->
         <ng-container matColumnDef="caseCount">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Cases </th>
           <td mat-cell *matCellDef="let case"> {{case.caseCount}} </td>
+          <td mat-footer-cell *matFooterCellDef> {{getTotalCases(1)}} </td>
         </ng-container>
 
         <!-- cured Column -->
         <ng-container matColumnDef="cured">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Cured </th>
           <td mat-cell *matCellDef="let case"> {{case.cured}} </td>
+          <td mat-footer-cell *matFooterCellDef> {{getTotalCases(2)}} </td>
         </ng-container>
 
         <!-- death Column -->
         <ng-container matColumnDef="death">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>  Death </th>
           <td mat-cell *matCellDef="let case"> {{case.death}} </td>
+          <td mat-footer-cell *matFooterCellDef> {{getTotalCases(3)}} </td>
         </ng-container>
 
         <!-- caseDate Column -->
@@ -50,6 +54,7 @@
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
       </table>
     </div>
   </mat-card-content>
