@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from "@angular/router"
 import {Dailycases} from "../interfaces/dailycases";
 import {DailycasesService} from "../services/dailycases.service";
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,16 +13,17 @@ import {DailycasesService} from "../services/dailycases.service";
 })
 export class DashboardComponent implements OnInit {
   displayedColumns = ['stateName', 'caseCount', 'cured', 'death'];
-  covidData: Dailycases[] =[];
+  dataSource: MatTableDataSource<Dailycases>;
+  @ViewChild(MatSort) sort: MatSort;
+
   constructor(private formBuilder: FormBuilder, private router: Router, private dailyCaseService: DailycasesService) { }
 
   ngOnInit(): void {
     this.dailyCaseService.getDailyCases().subscribe((data: any[])=>{
-      this.covidData = data;
+      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.sort = this.sort;
     })
 
-
-    console.log(this.covidData );
   }
 
 }
