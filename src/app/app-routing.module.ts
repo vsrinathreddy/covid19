@@ -4,24 +4,15 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SiteLayoutComponent } from './site-layout/site-layout.component';
 import { LoginComponent } from './login/login.component';
 import { CaseEntryComponent } from './case-entry/case-entry.component';
+import { AppComponent } from './app.component';
 
 const routes: Routes = [
 
-  {
-      path: '',
-      component: SiteLayoutComponent,
-      children: [
-        { path: 'dashboard', component: DashboardComponent },
-        { path: 'login', component: LoginComponent },
-        { path: 'cases', component: CaseEntryComponent }
-      ]
-  },
-
-  //no layout routes
-  //{ path: 'login', component: LoginComponent},
-  //{ path: 'register', component: RegisterComponent },
-  // otherwise redirect to home
-  { path: '**', redirectTo: '' }];
+  { path: '', component: DashboardComponent},
+  { path: 'dashboard', component: DashboardComponent},
+  { path: 'cases', component: CaseEntryComponent },
+  { path: 'login', component: LoginComponent },
+  { path: '**', redirectTo: 'dashboard' }];
 
   @NgModule({
     imports: [RouterModule.forRoot(routes,{useHash:true})],

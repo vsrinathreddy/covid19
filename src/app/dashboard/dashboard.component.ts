@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private router: Router, private dailyCaseService: DailycasesService) { }
 
+
   ngOnInit(): void {
     this.dailyCaseService.getDailyCases().subscribe((data: any[])=>{
       this.dataSource = new MatTableDataSource(data);
@@ -39,5 +40,7 @@ export class DashboardComponent implements OnInit {
       return this.dailyCases.map(t => t.death).reduce((acc, value) => acc + value, 0);
     }
   }
+
+
 
 }
