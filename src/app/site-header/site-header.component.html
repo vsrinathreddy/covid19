@@ -3,26 +3,24 @@
     <button mat-icon-button (click)="sidenav.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
-    <h1 class="example-app-name">Covid19 India</h1>
+    <h1 class="example-app-name"><a (click)="goToURL('dashboard')">Covid19 India</a></h1>
 
   </mat-toolbar>
 
   <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
-    <mat-sidenav #sidenav [mode]="mobileQuery.matches ? 'over' : 'side'"
-    [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" (click)="sidenav.toggle()">
+    <mat-sidenav #sidenav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+      fixedTopGap="56">
       <mat-nav-list>
-        <a routerLink="/dashboard" routerLinkActive="active"  mat-list-item>
-          <mat-icon>home</mat-icon>
-          Home
+        <a (click)="goToURL('dashboard')" mat-list-item>
+          <mat-icon>home</mat-icon> Dashboard
         </a>
-        <a routerLink="/login" routerLinkActive="active" mat-list-item>
-          <mat-icon>account_box</mat-icon>
-          My Account
+        <a mat-list-item (click)="goToURL('cases')">
+          <mat-icon>loop</mat-icon> Daily Cases List
         </a>
-        <a routerLink="/cases" routerLinkActive="active" mat-list-item>
-          <mat-icon>create</mat-icon>
-          Daily Cases
+        <a (click)="goToURL('login')" mat-list-item>
+          <mat-icon>account_box</mat-icon> My Account
         </a>
+
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>

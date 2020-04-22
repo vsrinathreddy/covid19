@@ -1,8 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { DatePipe } from '@angular/common'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LayoutModule } from '@angular/cdk/layout';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule, } from '@angular/material/sidenav';
@@ -44,6 +46,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     CaseEntryComponent
   ],
   imports: [
+    LayoutModule,
     MatSortModule,
     MatTableModule,
     MatTabsModule,
@@ -74,7 +77,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatSelectModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

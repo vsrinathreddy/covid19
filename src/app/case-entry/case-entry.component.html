@@ -1,40 +1,89 @@
 <mat-card class="example-card">
   <mat-card-header>
-    <mat-card-title color="primary">Daily Case Details</mat-card-title>
+    <mat-card-title color="primary">All Cases Details</mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <form class="example-form" [formGroup]="caseFormGroup" (ngSubmit)="onSubmit(caseFormGroup.value)">
-      <mat-form-field class="example-full-width">
-        <mat-label>Date</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="date">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker touchUi #picker></mat-datepicker>
-        <mat-error *ngIf="caseFormGroup.controls['date'].errors?.required &&
-        caseFormGroup.controls['date'].touched">
-          Date is <strong>required</strong>
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field class="example-full-width">
-        <mat-label>Select State</mat-label>
-        <mat-select  formControlName="stateControl">
-          <mat-option *ngFor="let state of states" [value]="state.stateID">
-            {{state.stateName}}
-          </mat-option>
-        </mat-select>
-        <mat-error *ngIf="caseFormGroup.controls['stateControl'].errors?.required">
-          State is <strong>required</strong>
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field class="example-full-width">
-        <mat-label>Case Count</mat-label>
-        <input matInput placeholder="enter count" formControlName="count">
-        <mat-error *ngIf="caseFormGroup.controls['count'].errors?.required &&
-        caseFormGroup.controls['count'].touched">
-          Case Count is <strong>required</strong>
-        </mat-error>
-      </mat-form-field>
-      <button mat-raised-button color="primary" type="submit">Submit</button>
-      <mat-label style="color: red;margin-left: 10px;">{{error}}</mat-label>
+      <table class="example-form">
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <mat-label>Date</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="date">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker [touchUi]="mobileQuery.matches" #picker></mat-datepicker>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="example-full-width">
+              <mat-label>Select State</mat-label>
+              <mat-select formControlName="stateControl">
+                <mat-option [value]="0">
+                  All
+                </mat-option>
+                <mat-option *ngFor="let state of states" [value]="state.stateID">
+                  {{state.stateName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+          <td>
+            <button mat-raised-button color="primary" type="submit">Submit</button>
+          </td>
+        </tr>
+      </table>
+
     </form>
+    <div class="example-container mat-elevation-z2">
+      <table mat-table [dataSource]="dataSource" matSort>
+
+        <!-- covidID Column -->
+        <ng-container matColumnDef="covidID">
+          <th mat-header-cell *matHeaderCellDef> Covid ID </th>
+          <td mat-cell *matCellDef="let case"> {{case.covidID}} </td>
+        </ng-container>
+
+        <!-- stateID Column -->
+        <ng-container matColumnDef="stateID">
+          <th mat-header-cell *matHeaderCellDef> State ID </th>
+          <td mat-cell *matCellDef="let case"> {{case.stateID}} </td>
+        </ng-container>
+
+        <!-- caseDate Column -->
+        <ng-container matColumnDef="caseDate">
+          <th mat-header-cell *matHeaderCellDef> Case Date </th>
+          <td mat-cell *matCellDef="let case"> {{case.caseDate | date:'dd-MMM-yyyy' }} </td>
+        </ng-container>
+
+        <!-- stateName Column -->
+        <ng-container matColumnDef="stateName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Name of State/UT</th>
+          <td mat-cell *matCellDef="let case"> {{case.stateName}} </td>
+        </ng-container>
+
+        <!-- caseCount Column -->
+        <ng-container matColumnDef="caseCount">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Cases </th>
+          <td mat-cell *matCellDef="let case"> {{case.caseCount}} </td>
+        </ng-container>
+
+        <!-- cured Column -->
+        <ng-container matColumnDef="cured">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Cured </th>
+          <td mat-cell *matCellDef="let case"> {{case.cured}} </td>
+        </ng-container>
+
+        <!-- death Column -->
+        <ng-container matColumnDef="death">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Death </th>
+          <td mat-cell *matCellDef="let case"> {{case.death}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+    </div>
+    <mat-paginator [pageSizeOptions]="[33, 20, 50,100]" showFirstLastButtons></mat-paginator>
   </mat-card-content>
 </mat-card>
