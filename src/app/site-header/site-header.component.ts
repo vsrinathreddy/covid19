@@ -34,6 +34,9 @@ export class SiteHeaderComponent implements OnInit {
     else if(path=='cases'){
       this.router.navigate(['/cases'])
     }
+    else if(path=='charts'){
+      this.router.navigate(['/charts'])
+    }
 
     if(this.mobileQuery.matches){
       this.sidenav.close();

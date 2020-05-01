@@ -13,7 +13,7 @@ export class DailycasesService {
     return this.http.get(this.baseUrl + 'getdailycases');
   }
   public getAllDailyCases(selectDate: string,stateID: number): Observable<any> {
-    console.log(this.baseUrl + 'AllDailyCases?selectDate=' +selectDate + '&&stateID=' +stateID);
+
     return this.http.get(this.baseUrl + 'AllDailyCases?selectDate=' +selectDate + '&&stateID=' +stateID);
   }
 }

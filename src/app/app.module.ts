@@ -35,6 +35,8 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatSortModule} from '@angular/material/sort';
 import {MatTableModule} from '@angular/material/table';
 import {MatTabsModule} from '@angular/material/tabs';
+import { GoogleChartsModule } from 'angular-google-charts';
+import { CovidChartsComponent } from './covid-charts/covid-charts.component';
 
 @NgModule({
   declarations: [
@@ -43,9 +45,11 @@ import {MatTabsModule} from '@angular/material/tabs';
     SiteLayoutComponent,
     DashboardComponent,
     LoginComponent,
-    CaseEntryComponent
+    CaseEntryComponent,
+    CovidChartsComponent
   ],
   imports: [
+    GoogleChartsModule,
     LayoutModule,
     MatSortModule,
     MatTableModule,

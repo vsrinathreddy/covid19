@@ -5,6 +5,7 @@ import { SiteLayoutComponent } from './site-layout/site-layout.component';
 import { LoginComponent } from './login/login.component';
 import { CaseEntryComponent } from './case-entry/case-entry.component';
 import { AppComponent } from './app.component';
+import { CovidChartsComponent } from './covid-charts/covid-charts.component';
 
 const routes: Routes = [
 
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent},
   { path: 'cases', component: CaseEntryComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'charts', component: CovidChartsComponent },
   { path: '**', redirectTo: 'dashboard' }];
 
   @NgModule({

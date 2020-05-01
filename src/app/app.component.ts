@@ -9,6 +9,6 @@ import {Router} from "@angular/router"
 export class AppComponent {
   title = 'Covid19 India';
   constructor(private router: Router) {
-    //this.router.navigate(['/dashboard'])
+
    }
 }
