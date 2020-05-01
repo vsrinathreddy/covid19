@@ -38,9 +38,8 @@ export class SiteHeaderComponent implements OnInit {
       this.router.navigate(['/charts'])
     }
 
-    if(this.mobileQuery.matches){
       this.sidenav.close();
-    }
+
   }
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
