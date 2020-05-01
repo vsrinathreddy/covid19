@@ -73,4 +73,5 @@ export class CovidChartsComponent implements OnInit {
     }
     return finalArray;
   }
+
 }
