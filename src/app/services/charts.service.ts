@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ChartsService {
-  private baseUrl = 'https://localhost:44347/api/charts/';
+  private baseUrl = 'https://covid19service.azurewebsites.net/api/charts/';
   constructor(private http: HttpClient) { }
 
   public getChartsList(type: string,stateID: number): Observable<any> {
