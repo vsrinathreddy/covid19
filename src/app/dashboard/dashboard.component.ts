@@ -28,10 +28,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private router: Router,
     private dailyCaseService: DailycasesService,private chartsService: ChartsService) {
-
-
     }
-
 
   ngOnInit(): void {
     this.dailyCaseService.getDailyCases().subscribe((data: any[]) => {
@@ -52,7 +49,6 @@ export class DashboardComponent implements OnInit {
       this.animateCount(item.totalDeath, 2000,this.animatedDeath);
     }
   }
-
 
   animateCount(endValue, durationMs,element) {
     if (!this.steps) {
@@ -80,8 +76,6 @@ export class DashboardComponent implements OnInit {
 
     step();
   }
-
-
 
   getTotalCases(type: number) {
     if (type == 1) {
