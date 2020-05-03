@@ -19,6 +19,19 @@
               </mat-select>
             </mat-form-field>
           </td>
+          <td>
+            <mat-form-field class="example-full-width">
+              <mat-label>Select Report Type</mat-label>
+              <mat-select formControlName="reporttypecontrol" (ngModelChange)="onReportSelect()">
+                <mat-option [value]="0">
+                  Daily
+                </mat-option>
+                <mat-option [value]="1">
+                  Cummulative
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
         </tr>
       </table>
     </form>

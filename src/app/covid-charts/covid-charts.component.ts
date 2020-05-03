@@ -97,9 +97,11 @@ export class CovidChartsComponent implements OnInit {
 
   createForm() {
     this.chartsFormGroup = this.formBuilder.group({
-      'stateControl': ['0']
+      'stateControl': ['0'],
+      'reporttypecontrol': ['0']
     });
     this.chartsFormGroup.controls['stateControl'].setValue(0);
+    this.chartsFormGroup.controls['reporttypecontrol'].setValue(0);
   }
 
   onStateSelect() {
@@ -107,7 +109,27 @@ export class CovidChartsComponent implements OnInit {
       this.setCounter(data);
       this.chartPieData = this.setPieData(data);
     });
-    this.chartsService.getChartsList('All', this.chartsFormGroup.get('stateControl').value).subscribe((data: any[]) => {
+    this.chartsService.getChartsList('Daily', this.chartsFormGroup.get('stateControl').value).subscribe((data: any[]) => {
+      this.chartTotalData = this.convertJsonToArray(data, 'Total');
+      this.chartCuredData = this.convertJsonToArray(data, 'Cured');
+      this.chartDeathData = this.convertJsonToArray(data, 'Death');
+    });
+  }
+
+  onReportSelect() {
+    let reporttype: string;
+    if(this.chartsFormGroup.get('reporttypecontrol').value==0){
+      reporttype='Daily';
+    }
+    else{
+      reporttype='Cummulative';
+    }
+
+    this.chartsService.getCountersList('All', this.chartsFormGroup.get('stateControl').value).subscribe((data: any[]) => {
+      this.setCounter(data);
+      this.chartPieData = this.setPieData(data);
+    });
+    this.chartsService.getChartsList(reporttype, this.chartsFormGroup.get('stateControl').value).subscribe((data: any[]) => {
       this.chartTotalData = this.convertJsonToArray(data, 'Total');
       this.chartCuredData = this.convertJsonToArray(data, 'Cured');
       this.chartDeathData = this.convertJsonToArray(data, 'Death');
