@@ -13,4 +13,8 @@ export class ChartsService {
 
     return this.http.get(this.baseUrl + 'ChartList?type=' +type + '&&stateID=' +stateID);
   }
+  public getCountersList(type: string,stateID: number): Observable<any> {
+
+    return this.http.get(this.baseUrl + 'CounterList?type=' +type + '&&stateID=' +stateID);
+  }
 }

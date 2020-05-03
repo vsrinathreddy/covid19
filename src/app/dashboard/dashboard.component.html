@@ -3,7 +3,76 @@
     <mat-card-title color="primary">Covid19 India Statewise cases as of {{date | date:'dd-MMM-yyyy'}}</mat-card-title>
   </mat-card-header>
   <mat-card-content>
+
+    <div class="row">
+      <div class="col-md-3">
+        <div class="animated-digit" style="background: purple;">
+          <table>
+            <tr>
+              <td style="padding-bottom: 10px;">
+                <span class="countertitle">TOTAL CASES</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span #animatedTotal class="counterdigit"></span>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="animated-digit" style="background: orange;">
+          <table>
+            <tr>
+              <td style="padding-bottom: 10px;">
+                <span class="countertitle">ACTIVE CASES</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span #animatedActive class="counterdigit"></span>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="animated-digit" style="background: green;">
+          <table>
+            <tr>
+              <td style="padding-bottom: 10px;">
+                <span class="countertitle">CURED CASES</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span #animatedCured class="counterdigit"></span>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="animated-digit" style="background: red;">
+          <table>
+            <tr>
+              <td style="padding-bottom: 10px;">
+                <span class="countertitle">DEATH CASES</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span #animatedDeath class="counterdigit"></span>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <br>
     <div class="example-container mat-elevation-z8">
+
       <table mat-table [dataSource]="dataSource" matSort>
 
         <!-- covidID Column -->
@@ -41,7 +110,7 @@
 
         <!-- death Column -->
         <ng-container matColumnDef="death">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>  Death </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Death </th>
           <td mat-cell *matCellDef="let case"> {{case.death}} </td>
           <td mat-footer-cell *matFooterCellDef> {{getTotalCases(3)}} </td>
         </ng-container>

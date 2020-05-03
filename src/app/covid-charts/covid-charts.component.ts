@@ -34,6 +34,7 @@ export class CovidChartsComponent implements OnInit {
 
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
+
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,
     private formBuilder: FormBuilder, private router: Router, public datepipe: DatePipe,
     private stateService: StateserviceService, private chartsService: ChartsService) { }
@@ -73,5 +74,6 @@ export class CovidChartsComponent implements OnInit {
     }
     return finalArray;
   }
+
 
 }

@@ -37,6 +37,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatTabsModule} from '@angular/material/tabs';
 import { GoogleChartsModule } from 'angular-google-charts';
 import { CovidChartsComponent } from './covid-charts/covid-charts.component';
+import { CounterComponent } from './animated/counter/counter.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { CovidChartsComponent } from './covid-charts/covid-charts.component';
     DashboardComponent,
     LoginComponent,
     CaseEntryComponent,
-    CovidChartsComponent
+    CovidChartsComponent,
+    CounterComponent
   ],
   imports: [
     GoogleChartsModule,
