@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from "@angular/router"
 import { States } from "../interfaces/states";
@@ -7,6 +7,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { Charts } from "../interfaces/charts";
 import { ChartsService } from "../services/charts.service";
 import { DatePipe } from '@angular/common';
+import { ICounter } from "../interfaces/i-Counter";
 
 @Component({
   selector: 'app-covid-charts',
@@ -18,22 +19,67 @@ export class CovidChartsComponent implements OnInit {
   post: any = '';
   error: string = '';
   states: States[] = [];
-  chartsData: Charts[] = [];
 
-  title = 'Daily Cases';
-  type = 'BarChart';
-  chartFinalData = [];
-  columnNames = ['Date', 'Total Cases'];
-  options = {animation:{
-    duration: 2000,
-    easing: 'linear',
-    startup: true
-  }};
+  type = 'ColumnChart';
+  pietype = 'PieChart';
+
+  chartPieData = [];
+  chartTotalData = [];
+  chartCuredData = [];
+  chartDeathData = [];
+
+  piecolumnNames = ['Type', 'Percentage'];
+  curedcolumnNames = ['Date', 'Cured'];
+  deathcolumnNames = ['Date', 'Death'];
+  totalcolumnNames = ['Date', 'Total Cases'];
+
+  totaloptions = {
+    title: 'Cumulative Confirmed Cases of last 21 days',
+    animation: {
+      duration: 2000,
+      easing: 'linear',
+      startup: true
+    },
+    colors: ['purple']
+  };
+
+  curedoptions = {
+    title: 'Cumulative Cured Cases of last 21 days',
+    animation: {
+      duration: 2000,
+      easing: 'linear',
+      startup: true
+    },
+    colors: ['green']
+  };
+
+  deathoptions = {
+    title: 'Cumulative Death Cases of last 21 days',
+    animation: {
+      duration: 2000,
+      easing: 'linear',
+      startup: true
+    },
+    colors: ['red']
+  };
+
+  pieoptions = {
+    title: 'Total Percentage of Cases',
+    is3D: true,
+    colors: ['purple', 'green', 'red']
+  };
+
   width = '50%';
   height = 500;
 
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
+
+  steps: number;
+  @ViewChild("animatedTotal") animatedTotal: ElementRef;
+  @ViewChild("animatedActive") animatedActive: ElementRef;
+  @ViewChild("animatedCured") animatedCured: ElementRef;
+  @ViewChild("animatedDeath") animatedDeath: ElementRef;
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,
     private formBuilder: FormBuilder, private router: Router, public datepipe: DatePipe,
@@ -45,7 +91,8 @@ export class CovidChartsComponent implements OnInit {
     this.stateService.getStates().subscribe((data: any[]) => {
       this.states = data;
     });
-    this.onStateSelect() ;
+    this.onStateSelect();
+
   }
 
   createForm() {
@@ -56,24 +103,72 @@ export class CovidChartsComponent implements OnInit {
   }
 
   onStateSelect() {
+    this.chartsService.getCountersList('All', this.chartsFormGroup.get('stateControl').value).subscribe((data: any[]) => {
+      this.setCounter(data);
+      this.chartPieData = this.setPieData(data);
+    });
     this.chartsService.getChartsList('All', this.chartsFormGroup.get('stateControl').value).subscribe((data: any[]) => {
-      this.chartFinalData = this.convertJsonToArray(data);
-
+      this.chartTotalData = this.convertJsonToArray(data, 'Total');
+      this.chartCuredData = this.convertJsonToArray(data, 'Cured');
+      this.chartDeathData = this.convertJsonToArray(data, 'Death');
     });
   }
-  formatDate(date: string) {
-    return this.datepipe.transform(date, 'dd-MMM-yyyy');
+
+  setPieData(inputData: ICounter[]) {
+    let finalArray = [];
+    for (let item of inputData) {
+      let array = [];
+      array.push('Active', item.activeCases);
+      finalArray.push(array);
+      array = [];
+      array.push('Cured', item.totalCured);
+      finalArray.push(array);
+      array = [];
+      array.push('Death', item.totalDeath);
+      finalArray.push(array);
+
+    }
+    return finalArray;
+  }
+  setCounter(inputData: ICounter[]) {
+
+    let duration: number = 2000;
+    if (this.chartsFormGroup.get('stateControl').value != 0) {
+      duration = 1000;
+    }
+    else {
+      duration = 2000;
+    }
+    for (let item of inputData) {
+
+      this.chartsService.animateCount(item.totalCount, duration, this.animatedTotal);
+      this.chartsService.animateCount(item.activeCases, duration, this.animatedActive);
+      this.chartsService.animateCount(item.totalCured, duration, this.animatedCured);
+      this.chartsService.animateCount(item.totalDeath, duration, this.animatedDeath);
+    }
   }
 
-  convertJsonToArray(inputData: Charts[]) {
+
+  convertJsonToArray(inputData: Charts[], type: string) {
     let finalArray = [];
-    for(let item of inputData){
+    for (let item of inputData) {
       let array = [];
-      array.push(this.formatDate(item.createdDate.toString()), item.totalCount);
+      if (type == 'Total') {
+        array.push(this.formatDate(item.createdDate.toString()), item.totalCount);
+      }
+      else if (type == 'Cured') {
+        array.push(this.formatDate(item.createdDate.toString()), item.totalCured);
+      }
+      else if (type == 'Death') {
+        array.push(this.formatDate(item.createdDate.toString()), item.totalDeath);
+      }
       finalArray.push(array);
     }
     return finalArray;
   }
 
 
+  formatDate(date: string) {
+    return this.datepipe.transform(date, 'dd-MMM');
+  }
 }

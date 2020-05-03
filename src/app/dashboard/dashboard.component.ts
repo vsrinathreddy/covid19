@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild,AfterViewInit,ElementRef } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild,ElementRef } from '@angular/core';
+import { FormBuilder} from '@angular/forms';
 import { Router } from "@angular/router"
 import { Dailycases } from "../interfaces/dailycases";
 import { DailycasesService } from "../services/dailycases.service";
@@ -43,38 +43,11 @@ export class DashboardComponent implements OnInit {
 
   setCounter(inputData: ICounter[]){
     for(let item of inputData){
-      this.animateCount(item.totalCount, 2000,this.animatedTotal);
-      this.animateCount(item.activeCases, 2000,this.animatedActive);
-      this.animateCount(item.totalCured, 2000,this.animatedCured);
-      this.animateCount(item.totalDeath, 2000,this.animatedDeath);
+      this.chartsService.animateCount(item.totalCount, 2000,this.animatedTotal);
+      this.chartsService.animateCount(item.activeCases, 2000,this.animatedActive);
+      this.chartsService.animateCount(item.totalCured, 2000,this.animatedCured);
+      this.chartsService.animateCount(item.totalDeath, 2000,this.animatedDeath);
     }
-  }
-
-  animateCount(endValue, durationMs,element) {
-    if (!this.steps) {
-      this.steps = 12;
-    }
-
-    const stepCount = Math.abs(durationMs / this.steps);
-    const valueIncrement = (endValue - 0) / stepCount;
-    const sinValueIncrement = Math.PI / stepCount;
-
-    let currentValue = 0;
-    let currentSinValue = 0;
-
-    function step() {
-      currentSinValue += sinValueIncrement;
-      currentValue += valueIncrement * Math.sin(currentSinValue) ** 2 * 2;
-
-      element.nativeElement.textContent = Math.abs(Math.floor(currentValue));
-
-
-      if (currentSinValue < Math.PI) {
-        window.requestAnimationFrame(step);
-      }
-    }
-
-    step();
   }
 
   getTotalCases(type: number) {

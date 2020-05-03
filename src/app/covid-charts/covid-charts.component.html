@@ -19,20 +19,56 @@
               </mat-select>
             </mat-form-field>
           </td>
-
         </tr>
       </table>
     </form>
     <div class="row">
-
+      <div class="col-md-3">
+        <div class="animated-digit" style="background: purple;">
+          <span class="countertitle">TOTAL : </span>&nbsp;
+          <span #animatedTotal class="counterdigit"></span>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="animated-digit" style="background: orange;">
+          <span class="countertitle">ACTIVE : </span>&nbsp;
+          <span #animatedActive class="counterdigit"></span>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="animated-digit" style="background: green;">
+          <span class="countertitle">CURED : </span>&nbsp;
+          <span #animatedCured class="counterdigit"></span>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="animated-digit" style="background: red;">
+          <span class="countertitle">DEATH : </span>&nbsp;
+          <span #animatedDeath class="counterdigit"></span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
       <div class="col-md-6">
-        <google-chart style="width: 100%; min-height: 450px;" #chart [title]="title" [type]="type"
-          [data]="chartFinalData" [options]="options" [columns]="columnNames">
+        <google-chart style="width: 100%; min-height: 450px;" #chart  [type]="pietype"
+          [data]="chartPieData" [options]="pieoptions" [columns]="piecolumnNames">
         </google-chart>
       </div>
       <div class="col-md-6">
-        <google-chart style="width: 100%; min-height: 450px;" #chart [title]="title" [type]="type"
-          [data]="chartFinalData" [options]="options" [columns]="columnNames">
+        <google-chart style="width: 100%; min-height: 450px;" #chart  [type]="type"
+          [data]="chartTotalData" [options]="totaloptions" [columns]="totalcolumnNames">
+        </google-chart>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <google-chart style="width: 100%; min-height: 450px;" #chart  [type]="type"
+          [data]="chartCuredData" [options]="curedoptions" [columns]="curedcolumnNames">
+        </google-chart>
+      </div>
+      <div class="col-md-6">
+        <google-chart style="width: 100%; min-height: 450px;" #chart [type]="type"
+          [data]="chartDeathData" [options]="deathoptions" [columns]="deathcolumnNames">
         </google-chart>
       </div>
     </div>

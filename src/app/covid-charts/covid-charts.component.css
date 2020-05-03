@@ -22,3 +22,27 @@ table {
 .row {
   margin:0 !important;
 }
+
+.animated-digit {
+  display: inline-flex;
+  height: 60px;
+  width: 100%;
+  color: white;
+  text-align: center;
+  border-radius: 60px;
+  border: 2px solid white;
+
+  justify-content:center;
+  align-items: center;
+
+}
+.countertitle{
+  font-size:20pt;
+  font-weight: bold;
+}
+
+.counterdigit{
+  font-size:26pt;
+
+}
+
