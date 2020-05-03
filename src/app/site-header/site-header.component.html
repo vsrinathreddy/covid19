@@ -3,8 +3,10 @@
     <button mat-icon-button (click)="sidenav.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
-    <h1 class="example-app-name"><a (click)="goToURL('dashboard')">Covid19 India</a></h1>
-
+    <h1 class="example-app-name"><a (click)="goToURL('dashboard')">COVID-19 India Tracker</a></h1>
+    <div style="width:100%; font-size: 15px; text-align: right; vertical-align: bottom;">
+      <span>Developed by Srinath</span>
+    </div>
   </mat-toolbar>
 
   <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
