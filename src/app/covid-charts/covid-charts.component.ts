@@ -19,6 +19,7 @@ export class CovidChartsComponent implements OnInit {
   post: any = '';
   error: string = '';
   states: States[] = [];
+  dynamicResize:boolean= true;
 
   type = 'ColumnChart';
   pietype = 'PieChart';
@@ -34,7 +35,7 @@ export class CovidChartsComponent implements OnInit {
   totalcolumnNames = ['Date', 'Total Cases'];
 
   totaloptions = {
-    title: 'Cumulative Confirmed Cases of last 21 days',
+    title: 'Confirmed Cases of last 21 days',
     animation: {
       duration: 2000,
       easing: 'linear',
@@ -44,7 +45,7 @@ export class CovidChartsComponent implements OnInit {
   };
 
   curedoptions = {
-    title: 'Cumulative Cured Cases of last 21 days',
+    title: 'Cured Cases of last 21 days',
     animation: {
       duration: 2000,
       easing: 'linear',
@@ -54,7 +55,7 @@ export class CovidChartsComponent implements OnInit {
   };
 
   deathoptions = {
-    title: 'Cumulative Death Cases of last 21 days',
+    title: 'Death Cases of last 21 days',
     animation: {
       duration: 2000,
       easing: 'linear',
@@ -69,7 +70,7 @@ export class CovidChartsComponent implements OnInit {
     colors: ['purple', 'green', 'red']
   };
 
-  width = '50%';
+  width = '50vh';
   height = 500;
 
   mobileQuery: MediaQueryList;

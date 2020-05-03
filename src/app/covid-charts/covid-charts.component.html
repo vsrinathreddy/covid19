@@ -27,7 +27,7 @@
                   Daily
                 </mat-option>
                 <mat-option [value]="1">
-                  Cummulative
+                  Cumulative
                 </mat-option>
               </mat-select>
             </mat-form-field>
@@ -64,23 +64,23 @@
     <div class="row">
       <div class="col-md-6">
         <google-chart style="width: 100%; min-height: 450px;" #chart  [type]="pietype"
-          [data]="chartPieData" [options]="pieoptions" [columns]="piecolumnNames">
+          [data]="chartPieData" [dynamicResize]="dynamicResize" [options]="pieoptions" [columns]="piecolumnNames">
         </google-chart>
       </div>
       <div class="col-md-6">
-        <google-chart style="width: 100%; min-height: 450px;" #chart  [type]="type"
+        <google-chart style="width: 100%; min-height: 450px;" #chart  [type]="type" [dynamicResize]="dynamicResize"
           [data]="chartTotalData" [options]="totaloptions" [columns]="totalcolumnNames">
         </google-chart>
       </div>
     </div>
     <div class="row">
       <div class="col-md-6">
-        <google-chart style="width: 100%; min-height: 450px;" #chart  [type]="type"
+        <google-chart style="width: 100%; min-height: 450px;" #chart  [type]="type" [dynamicResize]="dynamicResize"
           [data]="chartCuredData" [options]="curedoptions" [columns]="curedcolumnNames">
         </google-chart>
       </div>
       <div class="col-md-6">
-        <google-chart style="width: 100%; min-height: 450px;" #chart [type]="type"
+        <google-chart style="width: 100%; min-height: 450px;" #chart [type]="type" [dynamicResize]="dynamicResize"
           [data]="chartDeathData" [options]="deathoptions" [columns]="deathcolumnNames">
         </google-chart>
       </div>
