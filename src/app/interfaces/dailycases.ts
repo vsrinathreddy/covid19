@@ -3,6 +3,7 @@ export interface Dailycases {
   stateID: number;
   stateName: string;
   caseCount: number;
+  activeCases:number;
   cured: number;
   death: number;
   caseDate: number;

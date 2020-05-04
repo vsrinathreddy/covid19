@@ -14,7 +14,7 @@ import { ICounter } from "../interfaces/i-Counter";
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  displayedColumns = ['stateName', 'caseCount', 'cured', 'death'];
+  displayedColumns = ['stateName', 'caseCount', 'activeCases','cured', 'death'];
   dataSource: MatTableDataSource<Dailycases>;
   dailyCases: Dailycases[] = [];
 
@@ -57,8 +57,11 @@ export class DashboardComponent implements OnInit {
     else if (type == 2) {
       return this.dailyCases.map(t => t.cured).reduce((acc, value) => acc + value, 0);
     }
-    else {
+    else if (type == 3) {
       return this.dailyCases.map(t => t.death).reduce((acc, value) => acc + value, 0);
+    }
+    else {
+      return this.dailyCases.map(t => t.activeCases).reduce((acc, value) => acc + value, 0);
     }
   }
 
