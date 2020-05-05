@@ -126,10 +126,10 @@ export class CovidChartsComponent implements OnInit {
       reporttype='Cummulative';
     }
 
-    this.chartsService.getCountersList('All', this.chartsFormGroup.get('stateControl').value).subscribe((data: any[]) => {
-      this.setCounter(data);
-      this.chartPieData = this.setPieData(data);
-    });
+    //this.chartsService.getCountersList('All', this.chartsFormGroup.get('stateControl').value).subscribe((data: any[]) => {
+      //this.setCounter(data);
+     // this.chartPieData = this.setPieData(data);
+   // });
     this.chartsService.getChartsList(reporttype, this.chartsFormGroup.get('stateControl').value).subscribe((data: any[]) => {
       this.chartTotalData = this.convertJsonToArray(data, 'Total');
       this.chartCuredData = this.convertJsonToArray(data, 'Cured');
