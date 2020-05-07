@@ -67,7 +67,7 @@ export class CovidChartsComponent implements OnInit {
   pieoptions = {
     title: 'Total Percentage of Cases',
     is3D: true,
-    colors: ['purple', 'green', 'red']
+    colors: ['orange', 'green', 'red']
   };
 
   width = '50vh';
